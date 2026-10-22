@@ -1,0 +1,23 @@
+% Synthetic ECG Signal Generation
+
+clc;
+clear;
+close all;
+
+fs = 360;              % Sampling frequency (Hz)
+t = 0:1/fs:5;           % Time duration (5 seconds)
+hr = 33;                % Heart rate (beats per minute)
+rr = 60/hr;             % RR interval (seconds)
+
+% Generate basic ECG-like waveform
+ecg = sin(2*pi*(1/rr)*t);        % Heartbeat rhythm
+ecg = ecg + 0.5*sin(2*pi*2*t);   % QRS enhancement
+ecg = ecg + 0.1*sin(2*pi*0.5*t); % P & T wave effect
+
+% Plot synthetic ECG signal
+figure;
+plot(t, ecg, 'b');
+title('Synthetic ECG Signal');
+xlabel('Time (seconds)');
+ylabel('Amplitude');
+grid on;
